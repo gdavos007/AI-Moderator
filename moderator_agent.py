@@ -432,4 +432,3 @@ async def entrypoint(ctx: agents.JobContext):
 if __name__ == "__main__":
     agents.cli.run_app(agents.WorkerOptions(entrypoint_fnc=entrypoint))
 
-#tts=elevenlabs.TTS(voice_id=os.getenv("ELEVEN_VOICE_ID","5kMbtRSEKIkRZSdXxrZg"),model=os.getenv("ELEVEN_MODEL","eleven_flash_v2_5"),),
