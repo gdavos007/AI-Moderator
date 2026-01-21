@@ -36,7 +36,7 @@ app = FastAPI(title="LeverAI Focus Group API", version="0.2.0")
 # CORS for local development
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000", "http://localhost:5173", "http://localhost:5174"],
+    allow_origins=["http://localhost:XXXX", "http://XXXX.0.0.1:XXXXXX", "http://localhost:XXXX", "http://localhost:XXXX"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -46,7 +46,7 @@ app.add_middleware(
 
 LIVEKIT_API_KEY = os.getenv("LIVEKIT_API_KEY")
 LIVEKIT_API_SECRET = os.getenv("LIVEKIT_API_SECRET")
-LIVEKIT_URL = os.getenv("LIVEKIT_URL", "wss://ai-moderator-pkxfi93j.livekit.cloud")
+LIVEKIT_URL = os.getenv("LIVEKIT_URL", "wss://XXXXXXXXXXXXXXXX.livekit.cloud")
 GUIDE_FILE = os.getenv("GUIDE_FILE")
 
 # Redacted URL for logging (hide the project ID partially)
