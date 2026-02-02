@@ -1,0 +1,36 @@
+Proof of Concept Questionnaire.docx
+Proof of Concept Questionnaire.docx
+Funnel Agent Status.pptx
+Livekit Agents Terminal Output.docx
+node_modules/
+dist/, build/
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.development
+.env.test
+.env.production
+!.env.example
+.venv/, _pycache_, __pycache__/
+.pytest_cache/
+.ruff_cache/
+.vscode/
+.idea/
+*.log
+*.log.*
+*.log.*.*
+*.log.*.*.*
+*.log.*.*.*.*
+*.log.*.*.*.*.*
+*.log.*.*.*.*.*.*
+*.log.*.*.*.*.*.*.*
+*.log.*.*.*.*.*.*.*.*
+*.log.*.*.*.*.*.*.*.*.*
+*.log.*.*.*.*.*.*.*.*.*.*
+.DS_Store
+.cursor/rules/
+# Optional: secrets / local certs
+*.pem
+*.key   
