@@ -20,7 +20,7 @@ import { getGuideItems, getGuideMeta } from "./lib/guide";
 import { createSession, joinSession, startSession, endSession, getSession, getSessionStatus, SessionNotFoundError } from "./lib/session";
 
 const UI_NOTICE = "This session may be recorded/transcribed.";
-const LIVEKIT_URL = import.meta.env.VITE_LIVEKIT_URL ?? "wss://ai-moderator-pkxfi93j.livekit.cloud";
+const LIVEKIT_URL = import.meta.env.VITE_LIVEKIT_URL ?? "wss://ai-XXXXXXXXXXX.livekit.cloud";
 
 const statusLabels: Record<SessionStatus, string> = {
   waiting: "Waiting to start",
