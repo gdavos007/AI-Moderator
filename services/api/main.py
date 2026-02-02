@@ -23,7 +23,7 @@ import uuid
 env_paths = [
     Path(__file__).parent.parent.parent / ".env",
     Path.cwd() / ".env",
-    Path.home() / "Documents" / "Lever AI" / ".env",
+    Path.home() / "Documents" / "XXXXX" / ".env",
 ]
 for env_path in env_paths:
     if env_path.exists():
@@ -31,7 +31,7 @@ for env_path in env_paths:
         print(f"[api] Loaded .env from: {env_path}")
         break
 
-app = FastAPI(title="LeverAI Focus Group API", version="0.2.0")
+app = FastAPI(title="XXXXX Focus Group API", version="0.2.0")
 
 # CORS for local development
 app.add_middleware(
