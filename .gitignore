@@ -13,6 +13,14 @@ dist/, build/
 .env.test
 .env.production
 !.env.example
+# Python virtual environments
+venv/
+.venv/
+services/api/venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
 .venv/, _pycache_, __pycache__/
 .pytest_cache/
 .ruff_cache/

@@ -8,7 +8,11 @@ vi.mock("@livekit/components-react", () => ({
   LiveKitRoom: ({ children }: { children: React.ReactNode }) => <div data-testid="livekit-room">{children}</div>,
   RoomAudioRenderer: () => null,
   StartAudio: () => null,
+<<<<<<< HEAD
   useRoomContext: () => ({ name: "test-room", localParticipant: { identity: "test-user" } }),
+=======
+  useRoomContext: () => ({ name: "test-room" }),
+>>>>>>> origin/migrate/snapshot
   useParticipants: () => [],
   useConnectionState: () => "connected",
   useTracks: () => [],
@@ -16,7 +20,10 @@ vi.mock("@livekit/components-react", () => ({
   ParticipantTile: () => null,
   GridLayout: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
   ControlBar: () => null,
+<<<<<<< HEAD
   TrackRefContext: { Consumer: ({ children }: { children: () => React.ReactNode }) => null },
+=======
+>>>>>>> origin/migrate/snapshot
 }));
 
 vi.mock("livekit-client", () => ({
@@ -24,6 +31,7 @@ vi.mock("livekit-client", () => ({
   ConnectionState: { Connected: "connected" },
 }));
 
+<<<<<<< HEAD
 // Helper to set URL with session parameter
 const setUrlWithSession = (sessionId: string | null) => {
   const url = new URL("http://localhost:5173");
@@ -46,6 +54,8 @@ const mockHistoryReplaceState = () => {
   vi.spyOn(window.history, "replaceState").mockImplementation(() => {});
 };
 
+=======
+>>>>>>> origin/migrate/snapshot
 const createMockFetch = () => {
   return vi.fn(async (input: RequestInfo | URL, init?: RequestInit) => {
     const url = typeof input === "string" ? input : input.toString();
@@ -100,15 +110,21 @@ const createMockFetch = () => {
 describe("Organizer-only Start button", () => {
   beforeEach(() => {
     vi.stubGlobal("fetch", createMockFetch());
+<<<<<<< HEAD
     // Mock history.replaceState to avoid DOMException
     mockHistoryReplaceState();
     // Reset URL to no session (organizer creates new)
     setUrlWithSession(null);
+=======
+>>>>>>> origin/migrate/snapshot
   });
 
   afterEach(() => {
     vi.unstubAllGlobals();
+<<<<<<< HEAD
     vi.restoreAllMocks();
+=======
+>>>>>>> origin/migrate/snapshot
   });
 
   it("shows Start for organizer", async () => {
@@ -116,11 +132,16 @@ describe("Organizer-only Start button", () => {
     render(<App />);
 
     await user.type(screen.getByPlaceholderText("Your name"), "Avery");
+<<<<<<< HEAD
     
     // Organizer is selected by default when no URL session, enter password
     await user.type(screen.getByLabelText(/organizer password/i), "ABC12345!");
     
     await user.click(screen.getByRole("button", { name: /create.*join/i }));
+=======
+    await user.click(screen.getByRole("button", { name: "Organizer" }));
+    await user.click(screen.getByRole("button", { name: /join session/i }));
+>>>>>>> origin/migrate/snapshot
 
     // Wait for the session page and Start button
     await waitFor(() => {
@@ -129,20 +150,32 @@ describe("Organizer-only Start button", () => {
   });
 
   it("hides Start for participants", async () => {
+<<<<<<< HEAD
     // For participant to join, they need a URL with session parameter
     setUrlWithSession("test-session-123");
     
+=======
+>>>>>>> origin/migrate/snapshot
     const user = userEvent.setup();
     render(<App />);
 
     await user.type(screen.getByPlaceholderText("Your name"), "Riley");
+<<<<<<< HEAD
     // Participant is default when URL has session
+=======
+    await user.click(screen.getByRole("button", { name: "Participant" }));
+>>>>>>> origin/migrate/snapshot
     await user.click(screen.getByRole("button", { name: /join session/i }));
 
     // Wait for session page to load
     await waitFor(() => {
+<<<<<<< HEAD
       // Check we're on the session page (LiveKitRoom is rendered)
       expect(screen.getByTestId("livekit-room")).toBeInTheDocument();
+=======
+      // Check we're on the session page (not join page)
+      expect(screen.queryByPlaceholderText("Your name")).not.toBeInTheDocument();
+>>>>>>> origin/migrate/snapshot
     }, { timeout: 3000 });
 
     // Start button should not be visible for participants

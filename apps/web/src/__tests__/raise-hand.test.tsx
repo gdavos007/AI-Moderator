@@ -8,7 +8,11 @@ vi.mock("@livekit/components-react", () => ({
   LiveKitRoom: ({ children }: { children: React.ReactNode }) => <div data-testid="livekit-room">{children}</div>,
   RoomAudioRenderer: () => null,
   StartAudio: () => null,
+<<<<<<< HEAD
   useRoomContext: () => ({ name: "test-room", localParticipant: { identity: "test-user" } }),
+=======
+  useRoomContext: () => ({ name: "test-room" }),
+>>>>>>> origin/migrate/snapshot
   useParticipants: () => [],
   useConnectionState: () => "connected",
   useTracks: () => [],
@@ -16,7 +20,10 @@ vi.mock("@livekit/components-react", () => ({
   ParticipantTile: () => null,
   GridLayout: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
   ControlBar: () => null,
+<<<<<<< HEAD
   TrackRefContext: { Consumer: ({ children }: { children: () => React.ReactNode }) => null },
+=======
+>>>>>>> origin/migrate/snapshot
 }));
 
 vi.mock("livekit-client", () => ({
@@ -24,6 +31,7 @@ vi.mock("livekit-client", () => ({
   ConnectionState: { Connected: "connected" },
 }));
 
+<<<<<<< HEAD
 // Helper to set URL with session parameter
 const setUrlWithSession = (sessionId: string | null) => {
   const url = new URL("http://localhost:5173");
@@ -41,19 +49,28 @@ const setUrlWithSession = (sessionId: string | null) => {
   });
 };
 
+=======
+>>>>>>> origin/migrate/snapshot
 describe("Raise-hand event payload", () => {
   let fetchMock: ReturnType<typeof vi.fn>;
 
   beforeEach(() => {
+<<<<<<< HEAD
     // Participant needs URL with session to join
     setUrlWithSession("session-1");
     
+=======
+>>>>>>> origin/migrate/snapshot
     // Create a mock fetch that handles session API calls
     fetchMock = vi.fn(async (input: RequestInfo | URL, init?: RequestInit) => {
       const url = typeof input === "string" ? input : input.toString();
 
       if (url.includes("/api/sessions") && !url.includes("/join") && !url.includes("/raise-hand") && !url.includes("/status")) {
+<<<<<<< HEAD
         // Create session (should NOT be called for participants)
+=======
+        // Create session
+>>>>>>> origin/migrate/snapshot
         return new Response(JSON.stringify({ 
           id: "session-1", 
           roomName: "leverai-demo", 
@@ -106,6 +123,7 @@ describe("Raise-hand event payload", () => {
 
     render(<App />);
 
+<<<<<<< HEAD
     // Fill in form and join as Participant (via URL session)
     // Participant is default role when URL has session
     await user.type(screen.getByPlaceholderText("Your name"), "Taylor");
@@ -114,24 +132,45 @@ describe("Raise-hand event payload", () => {
     // Wait for session page to load (check for zoom-shell class or Leave button)
     await waitFor(() => {
       expect(screen.queryByRole("button", { name: /leave/i })).toBeInTheDocument();
+=======
+    // Fill in form and join
+    await user.type(screen.getByPlaceholderText("Your name"), "Taylor");
+    await user.click(screen.getByRole("button", { name: "Participant" }));
+    await user.click(screen.getByRole("button", { name: /join session/i }));
+
+    // Wait for session page to load
+    await waitFor(() => {
+      expect(screen.queryByText(/connecting/i) || screen.queryByText(/session/i)).toBeTruthy();
+>>>>>>> origin/migrate/snapshot
     }, { timeout: 3000 });
 
     // Note: The actual raise-hand button may not be visible in the test
     // because it requires the session to be in a specific state.
     // This test verifies the API mocking infrastructure works.
     
+<<<<<<< HEAD
     // Check that join was called (participant does NOT call createSession)
     const calls = fetchMock.mock.calls;
     const createCall = calls.find(([url, init]) => 
       typeof url === "string" && url.match(/\/api\/sessions$/) && init?.method === "POST"
+=======
+    // Check that create session and join were called
+    const calls = fetchMock.mock.calls;
+    const createCall = calls.find(([url]) => 
+      typeof url === "string" && url.includes("/api/sessions") && !url.includes("/join")
+>>>>>>> origin/migrate/snapshot
     );
     const joinCall = calls.find(([url]) => 
       typeof url === "string" && url.includes("/join")
     );
 
+<<<<<<< HEAD
     // Participant should NOT create session (they join via URL)
     expect(createCall).toBeFalsy();
     // But they should call join
+=======
+    expect(createCall).toBeTruthy();
+>>>>>>> origin/migrate/snapshot
     expect(joinCall).toBeTruthy();
   });
 });
